@@ -2,17 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| lastname           | string | null: false |
-| firstname          | string | null: false |
-| lastname_kana      | string | null: false |
-| firstname          | string | null: false |
-| firstname_kana     | string | null: false |
-| birthday           | date   | null: false |
+| Column             | Type   | Options                    |
+| ------------------ | ------ | -------------------------- |
+| nickname           | string | null: false                |
+| email              | string | null: false, unique: true  |
+| encrypted_password | string | null: false                |
+| lastname           | string | null: false                |
+| firstname          | string | null: false                |
+| lastname_kana      | string | null: false                |
+| firstname_kana     | string | null: false                |
+| birthday           | date   | null: false                |
 
 ### Association
 - has_many :items
@@ -23,24 +22,23 @@
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
-| image                 | string     | null: false                    |
-| item_name             | string     | null: false                    |
-| item_description      | string     | null: false                    |
-| item_category_id      | int        | null: false                    |
-| item_condition_id     | int        | null: false                    |
+| name                  | string     | null: false                    |
+| description           | text       | null: false                    |
+| category_id           | int        | null: false                    |
+| condition_id          | int        | null: false                    |
 | delivery_charge_id    | int        | null: false                    |
-| days_to_ship_id       | int        | null: false                    |
+| delivery_day_id       | int        | null: false                    |
 | price                 | int        | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - has_one    :order
-## Association (Active Hash)
-- has_many :item_categorys
-- has_many :item_conditions
+### Association (Active Hash)
+- has_many :categories
+- has_many :conditions
 - has_many :delivery_charges
-- has_many :days_to_ships
+- has_many :delivery_days
 
 ## orders テーブル
 
@@ -54,7 +52,7 @@
 - belongs_to :item
 - has_one    :delivery
 
-## deliverys テーブル
+## deliveries テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
@@ -68,29 +66,29 @@
 
 ### Association
 - belongs_to:order
-## Association (Active Hash)
-- has_many :deliverys
+### Association (Active Hash)
+- has_many :deliveries
 
 
 # Active Hash
 
-## item_category (Active Hash)
+## category
 ### Association
 - belongs_to :item
 
-## item_condition (Active Hash)
+## condition
 ### Association
 - belongs_to :item
 
-## delivery_charge (Active Hash)
+## delivery_charge
 ### Association
 - belongs_to :item
 
-## days_to_ship (Active Hash)
+## delivery_day
 ### Association
 - belongs_to :item
 
-## prefecture (Active Hash)
+## prefecture
 ### Association
 - belongs_to :delivery
 
