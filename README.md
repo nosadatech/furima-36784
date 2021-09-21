@@ -36,11 +36,11 @@
 - belongs_to :user
 - has_one    :order
 ### Association (Active Hash)
-- has_many :categories
-- has_many :conditions
-- has_many :delivery_charges
-- has_many :prefectures
-- has_many :delivery_days
+- belongs_to :category
+- belongs_to :condition
+- belongs_to :delivery_charge
+- belongs_to :prefecture
+- belongs_to :delivery_day
 
 ## orders テーブル
 
@@ -67,31 +67,31 @@
 | order              | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to:order
+- belongs_to :order
 ### Association (Active Hash)
-- has_many :prefectures
+- belongs_to :prefecture
 
 
 # Active Hash
 
 ## category
 ### Association
-- belongs_to :item
+- has_many :items
 
 ## condition
 ### Association
-- belongs_to :item
+- has_many :items
 
 ## delivery_charge
 ### Association
-- belongs_to :item
+- has_many :items
 
 ## delivery_day
 ### Association
-- belongs_to :item
+- has_many :items
 
 ## prefecture
 ### Association
-- belongs_to :item
-- belongs_to :delivery
+- has_many :items
+- has_many :deliveries
 
