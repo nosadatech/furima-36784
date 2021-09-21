@@ -27,6 +27,7 @@
 | category_id           | int        | null: false                    |
 | condition_id          | int        | null: false                    |
 | delivery_charge_id    | int        | null: false                    |
+| prefecture_id         | int        | null: false                    |
 | delivery_day_id       | int        | null: false                    |
 | price                 | int        | null: false                    |
 | user                  | references | null: false, foreign_key: true |
@@ -38,6 +39,7 @@
 - has_many :categories
 - has_many :conditions
 - has_many :delivery_charges
+- has_many :prefectures
 - has_many :delivery_days
 
 ## orders テーブル
@@ -67,7 +69,7 @@
 ### Association
 - belongs_to:order
 ### Association (Active Hash)
-- has_many :deliveries
+- has_many :prefectures
 
 
 # Active Hash
@@ -90,5 +92,6 @@
 
 ## prefecture
 ### Association
+- belongs_to :item
 - belongs_to :delivery
 
